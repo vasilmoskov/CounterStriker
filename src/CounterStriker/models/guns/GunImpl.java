@@ -28,31 +28,13 @@ public abstract class GunImpl implements Gun {
         return bulletsCount;
     }
 
-    private void setBulletsCount(int bulletsCount) {
+    protected void setBulletsCount(int bulletsCount) {
         if (bulletsCount < 0) {
-            throw new IllegalArgumentException (INVALID_GUN_BULLETS_COUNT);
+            throw new IllegalArgumentException(INVALID_GUN_BULLETS_COUNT);
         }
         this.bulletsCount = bulletsCount;
     }
 
     @Override
-    public int fire() {
-
-        if (this.getClass().getSimpleName().equals("Pistol")) {
-            if (getBulletsCount() < 1) {
-                return 0;
-            }
-
-            this.bulletsCount -= 1;
-            return 1;
-        } else if (this.getClass().getSimpleName().equals("Rifle")) {
-            if (getBulletsCount() < 10) {
-                return 0;
-            }
-
-            this.bulletsCount -= 10;
-            return 10;
-        }
-        return 0;
-    }
+    abstract public int fire();
 }
